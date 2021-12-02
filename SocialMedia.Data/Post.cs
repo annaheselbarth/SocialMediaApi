@@ -21,14 +21,14 @@ namespace SocialMedia.Data
 
 
 
-        public virtual ICollection<PostComments> ListOfComments { get; set; }
+        public virtual ICollection<Comment> ListOfComments { get; set; }
 
-        public virtual ICollection<PostLikes> ListOfPostLikes { get; set; }
+        public virtual ICollection<Like> ListOfPostLikes { get; set; }
 
         public Post()
         {
-            ListOfComments = new HashSet<PostComments>();
-            ListOfPostLikes = new HashSet<PostLikes>();
+            ListOfComments = new HashSet<Comment>();
+            ListOfPostLikes = new HashSet<Like>();
         }
 
         [Required]

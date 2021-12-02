@@ -11,10 +11,13 @@ namespace SocialMedia.Data
     public class Like
     {
         [Key]
-        public int PostId { get; set; }
-        [ForeignKey("Owner")]
-        public Guid OwnerId { get; set; }
         public int LikeId { get; set; }
-        public virtual ApplicationUser Owner { get; set; }
+        public Guid OwnerId { get; set; }
+        [ForeignKey(nameof(Post))]
+        public int PostId { get; set; }
+        public virtual Post Post { get; set; }
+
+
+        //public virtual ApplicationUser Owner { get; set; }
     }
 }

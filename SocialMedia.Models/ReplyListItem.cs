@@ -13,5 +13,6 @@ namespace SocialMedia.Models
         public int ReplyID { get; set; }
         [Display(Name = "Reply")]
         public string Text { get; set; }
+      
     }
 }

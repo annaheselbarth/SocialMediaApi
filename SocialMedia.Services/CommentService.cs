@@ -24,7 +24,8 @@ namespace SocialMedia.Services
                 {
                     CommentId = model.CommentId,
                     Text = model.Text,
-                    CreatedUtc = DateTimeOffset.Now
+                    CreatedUtc = DateTimeOffset.Now,
+                    PostID = model.PostID
 
                 };
             using (var ctx = new ApplicationDbContext())
@@ -56,14 +57,33 @@ namespace SocialMedia.Services
             }
         }
 
-        public CommentDetail GetCommentById(int id)
+        public CommentDetail GetCommentByAuthorId(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                         .Comments
-                        .Single(e => e.AuthorId == _authorId);
+                        .Single(e => e.CommentId == id && e.AuthorId == _authorId);
+                return
+                  new CommentDetail
+                  {
+                      CommentId = entity.CommentId,
+                      Text = entity.Text,
+                      CreatedUtc = entity.CreatedUtc,
+                      ModifiedUtc = entity.ModifiedUtc
+                  };
+            }
+
+        }
+        public CommentDetail GetCommentByPostId(int postId, int commentId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Comments
+                        .Single(e => e.PostID == postId && e.CommentId == commentId);
                 return
                   new CommentDetail
                   {

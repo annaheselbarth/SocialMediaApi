@@ -18,5 +18,6 @@ namespace SocialMedia.Models
 
         [Required]
         public DateTimeOffset CreatedUtc { get; set; }
+        public int PostID { get; set; }
     }
 }

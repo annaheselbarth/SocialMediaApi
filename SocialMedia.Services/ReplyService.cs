@@ -24,7 +24,7 @@ namespace SocialMedia.Services
                 {
                     AuthorID = _authorID,
                     Text = model.Text,
-                    //CommentID = model.CommentID
+                    CommentID = model.CommentID
                 };
             using (var ctx = new ApplicationDbContext())
             {
@@ -45,14 +45,31 @@ namespace SocialMedia.Services
                         new ReplyListItem
                         {
                             ReplyID = e.ReplyID,
-                            Text = e.Text
+                            Text = e.Text,
                         }
                      );
                 return query.ToArray();
             }
         }
+        public ReplyDetail GetReplyByCommentId(int commentId, int replyId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Replies
+                    .Single(e => e.CommentID == commentId && e.ReplyID == replyId);
+                return
+                    new ReplyDetail
+                    {
+                        //CommentID = entity.CommentID
+                        ReplyID = entity.ReplyID,
+                        Text = entity.Text
+                    };
+            }
+        }
 
-        public ReplyDetail GetReplyById(int replyId)
+        public ReplyDetail GetReplyByAuthorId(int replyId)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -84,7 +101,7 @@ namespace SocialMedia.Services
 
         public bool DeleteReply(int replyId)
         {
-            using(var ctx = new ApplicationDbContext())
+            using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx

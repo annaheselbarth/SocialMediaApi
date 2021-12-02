@@ -47,6 +47,7 @@ namespace SocialMedia.Data
         {
 
         }
+        public DbSet<Reply> Replies { get; set; }
 
         public DbSet<Comment> Comments { get; set; }
 
@@ -79,8 +80,6 @@ namespace SocialMedia.Data
         {
             HasKey(iur => iur.UserId);
         }
-
-        public DbSet<Reply> Replies { get; set; }
 
 
     }

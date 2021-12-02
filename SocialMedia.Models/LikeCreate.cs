@@ -9,5 +9,6 @@ namespace SocialMedia.Models
     public class LikeCreate
     {
         public int LikeId { get; set; }
+        public int PostId { get; set; }
     }
 }

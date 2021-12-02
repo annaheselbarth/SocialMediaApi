@@ -1,4 +1,5 @@
-﻿using SocialMedia.Data;
+﻿using Microsoft.AspNet.Identity;
+using SocialMedia.Data;
 using SocialMedia.Models;
 using SocialMedia.Services;
 using System;
@@ -10,15 +11,16 @@ using System.Web.Http;
 
 namespace SocialMedia.WebApi.Controllers
 {
+    [Authorize]
     public class LikeController : ApiController
     {
 
-        private Like CreateLike()
-        {
-            var ownerId = Guid.Parse(User.Identity.GetOwnerId());
-            var like = new Like(ownerId);
-            return like;
-        }
+        //private Like CreateLike()
+        //{
+        //    var ownerId = Guid.Parse(User.Identity.GetUserId());
+        //    var like = new LikeService(ownerId);
+        //    return like;
+        //}
 
         public IHttpActionResult Get()
         {
@@ -26,12 +28,24 @@ namespace SocialMedia.WebApi.Controllers
             var likes = likeService.GetLikes();
             return Ok(likes);
         }
+        public IHttpActionResult Get(int likeId, int postId)
+        {
+            LikeService likeService = CreateLikeService();
+            var reply = likeService.GetLikeByPostId(likeId, postId);
+            return Ok(reply);
+        }
+        public IHttpActionResult Get(int id)
+        {
+            LikeService likeService = CreateLikeService();
+            var reply = likeService.GetLikeByOwnerId(id);
+            return Ok(reply);
+        }
         public IHttpActionResult Post(LikeCreate like)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var service = CreateLike();
+            var service = CreateLikeService();
 
             if (!service.CreateLike(like))
                 return InternalServerError();
@@ -43,7 +57,7 @@ namespace SocialMedia.WebApi.Controllers
 
         private LikeService CreateLikeService()
         {
-            var userId = Guid.Parse(User.Identity.GetOwnerId());
+            var userId = Guid.Parse(User.Identity.GetUserId());
             var LikeService = new LikeService(userId);
             return LikeService;
         }

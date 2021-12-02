@@ -22,7 +22,13 @@ namespace SocialMedia.WebApi.Controllers
         public IHttpActionResult Get(int id)
         {
             ReplyService replyService = CreateReplyService();
-            var reply = replyService.GetReplyById(id);
+            var reply = replyService.GetReplyByAuthorId(id);
+            return Ok(reply);
+        }
+        public IHttpActionResult Get(int commentId, int replyId)
+        {
+            ReplyService replyService = CreateReplyService();
+            var reply = replyService.GetReplyByCommentId(commentId, replyId);
             return Ok(reply);
         }
         public IHttpActionResult Post(ReplyCreate reply)

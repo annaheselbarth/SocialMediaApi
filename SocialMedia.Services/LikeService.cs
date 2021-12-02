@@ -25,7 +25,9 @@ namespace SocialMedia.Services
             var entity =
                 new Like()
                 {
-                    OwnerId = _ownerId
+                    OwnerId = _ownerId,
+                    PostId = model.PostId,
+
 
                 };
             using (var ctx = new ApplicationDbContext())
@@ -53,14 +55,14 @@ namespace SocialMedia.Services
             }
         }
 
-        public LikeDetail GetLikeByPostId(int likePostId)
+        public LikeDetail GetLikeByPostId(int likeId, int postId)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                     .Likes
-                    .Single(e => e.LikeId == likePostId && e.PostId == _postId);
+                    .Single(e => e.LikeId == likeId && e.PostId == postId);
                 return
                     new LikeDetail
                     {

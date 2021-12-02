@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,8 +17,8 @@ namespace SocialMedia.Data
         [Required]
         public Guid AuthorID { get; set; }
 
-        //[ForeignKey(nameof(Comment))]
-        //public int CommentID { get; set; }
-        //public virtual Comment Comment { get; set; }
+        [ForeignKey(nameof(Comment))]
+        public int CommentID { get; set; }
+        public virtual Comment Comment { get; set; }
     }
 }
