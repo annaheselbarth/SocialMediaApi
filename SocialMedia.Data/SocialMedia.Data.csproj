@@ -89,6 +89,7 @@
     <Compile Include="Post.cs" />
     <Compile Include="PostLikes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reply.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

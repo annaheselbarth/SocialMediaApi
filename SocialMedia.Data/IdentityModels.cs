@@ -32,6 +32,7 @@ namespace SocialMedia.Data
         {
             return new ApplicationDbContext();
         }
+
         public DbSet<Post> Posts { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -59,5 +60,8 @@ namespace SocialMedia.Data
         {
             HasKey(iur => iur.UserId);
         }
+
+        public DbSet<Reply> Replies { get; set; }
+
     }
 }
