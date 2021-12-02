@@ -31,5 +31,6 @@ namespace SocialMedia.Data
         {
             return new ApplicationDbContext();
         }
+        public DbSet<Reply> Replies { get; set; }
     }
 }
