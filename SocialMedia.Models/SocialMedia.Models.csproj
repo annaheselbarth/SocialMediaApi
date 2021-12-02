@@ -58,6 +58,11 @@
     <Compile Include="PostDetail.cs" />
     <Compile Include="PostEdit.cs" />
     <Compile Include="PostListItem.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="LikeCreate.cs" />
+    <Compile Include="LikeDetail.cs" />
+    <Compile Include="LikeEdit.cs" />
+    <Compile Include="LikeListItem.cs" />
     <Compile Include="ReplyCreate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReplyDetail.cs" />
