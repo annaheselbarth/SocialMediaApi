@@ -84,7 +84,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+
+    <Compile Include="Comment.cs" />
+
     <Compile Include="PostComments.cs" />
+
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Post.cs" />
     <Compile Include="PostLikes.cs" />

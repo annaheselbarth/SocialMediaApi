@@ -34,7 +34,24 @@ namespace SocialMedia.Data
             return new ApplicationDbContext();
         }
 
+
+        public class IdentityUserLoginConfiguration : EntityTypeConfiguration<IdentityUserLogin>
+        {
+            public IdentityUserLoginConfiguration()
+            {
+                HasKey(iul => iul.UserId);
+            }
+        }
+
+        public class IdentityUserRoleConfiguration : EntityTypeConfiguration<IdentityUserRole>
+        {
+
+        }
+
+        public DbSet<Comment> Comments { get; set; }
+
         public DbSet<Post> Posts { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -47,6 +64,7 @@ namespace SocialMedia.Data
                 .Add(new IdentityUserLoginConfiguration())
                 .Add(new IdentityUserRoleConfiguration());
         }
+
     }
     public class IdentityUserLoginConfiguration : EntityTypeConfiguration<IdentityUserLogin>
     {
@@ -63,6 +81,7 @@ namespace SocialMedia.Data
         }
 
         public DbSet<Reply> Replies { get; set; }
+
 
     }
 }
